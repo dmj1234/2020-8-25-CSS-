@@ -1,15 +1,15 @@
-一个简单的例子：将 div 从做往右移动
+### 一个简单的例子：将 div 从做往右移动
 ·原理：每过一段时间（用 setlnterval 做到），将 div 移动到一小段距离，直到移动到目标地点
 ·注意性能：绿色表示重新绘制（repaint）了，CSS 渲染过程依次包含布局、绘制、合成，其中布局和绘制可能被忽略
 ![left做动画(2.png)](2.png)
 
-前端高手不用 left 做动画
+### 前端高手不用 left 做动画
 ·transform（变形）
 ·原理：transform：translateX（0 >= 300px),直接修改会被合成，需要等一会修改，transition 过度属性可以自动脑补中间帧
 ·注意性能：并没有 repaint（ 重新绘制），比改 left 性能好
 ![left做动画(3.png)](3.png)
 
-浏览器渲染原理
+### 浏览器渲染原理
 ·根据 HTML 构建树（DOM）![left做动画(4.png)](4.png)
 ·根据 CSS 构建 CSS 树（CSSOM）
 ·将两棵树合并成一颗渲染书（render tree）
@@ -17,7 +17,7 @@
 ·Paint 绘制（把边框颜色、文字颜色、阴影等画出来）
 Compose 合成(根据层叠关系展示画面）)
 
-如何更新样式
+### 如何更新样式
 ·一般我们用 JS 来更新样式
 ·比如 div.style.background='red'
 ·比如 div.style.display='none'
@@ -75,14 +75,14 @@ TL;DR
 JS 优化：使用 requestAnimationFrame 代替 setTimeout 或 setlnterval
 CSS 优化：使用 will-change 或 translate （上述：死记硬背）
 
-https://developer.mozilla.org/zh-CN/docs/Web/CSS/transform MDN 讲解网址
+### https://developer.mozilla.org/zh-CN/docs/Web/CSS/transform MDN 讲解网址
 ![语法(5.png)](5.png)
 ![语法格式(6.png)](6.png)
 transform：
 四个常用功能：位移 translate 缩放 scale 旋转 rotate 倾斜 skew
 经验：一般不需要 transition 过度 inline 元素不支持 transform，需要先变成 block
 
-transform 之 translate
+### transform 之 translate
 ·translateX（<length-percentage>)
 ·translateY（<length-percentage>)
 ·translate（<length-percentage>),<length-percentage>
@@ -91,25 +91,25 @@ translate3d(x,y,z)
 ·translateX（<length-percentage>)
 经验：要学会看懂 MDN 的语法示例，translate(-50%，-50%)可做绝对定位元素的居中
 
-transform 之 scale
+### transform 之 scale
 常用写法：scaleX(<number>)\scaleY(<number>)\scale(<number>,<number>)
 经验：用的少容易模糊
 
-transform 之 rotate
+### transform 之 rotate
 常用写法 rotate([<angle>|<zero]),rotateZ([<angle>|<zero]),rotateX([<angle>|<zero]),rotateY([<angle>|<zero])
 经验：一般用于 360 度旋转制作加载 loading 中，用到时再搜索 rotate MDN 看文档
-transform 之 skew
+### transform 之 skew
 常用写法 skewX([<angle|<zero>]>),skewY(<[angle|<zero>]>),skew([<angle|<zero>,]),[<angle|<zero>]?)
 经验用的少，用到时看 MDN
 
-transform 多重效果：组合使用
+### transform 多重效果：组合使用
 transform：scale(0.5)translate(-100%,-100%);
 transform:none;取消所有
 ![transform(7.png)](7.png)
 
 ![动画(8.png)](8.png) CSS 动画（跳动的心）
 
-transition:过度
+### transition:过度
 作用：补充中间帧
 语法：transition：属性名 时长 过度方式 延迟
 transition：left200ms liner
@@ -119,20 +119,20 @@ transition：left200ms，top 400mx
 transition：all 200ms
 过度方式有：liner、ease、ease-in、ease-out、ease-in-out、cubic-bezier、step-start、step-end、steps，具体含义靠数学知识
 
-注意：不是所有属性都能过度
+### 注意：不是所有属性都能过度
 ·display：none=>block 没法过渡，一般改成 visibility：hidden=>visible(没有为什么)
 ·display 和 visibility 的区别：display 动画就直接消失 visibility 淡出没有位置还在
 background 颜色可以过度吗
 opacity 透明度可以过度吗
 
-其他过度方法：
+### 其他过度方法：
 使用两次 transform
 ·a===transform===>.b
 ·b===transform===>.c
 如何知道中间点呢
 用 setTimeout 或者坚挺 transitionend 时间
 
-·使用 animation：声明关键帧、添加动画
+### ·使用 animation：声明关键帧、添加动画
 ![animation(9.png)](9.png)
 缩写语法：animation：时长、过度方式、延迟、次数、方向、填充模式、是否暂停、动画名
 ·时长：1s 或者 1000ms
